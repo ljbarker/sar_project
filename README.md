@@ -1,5 +1,9 @@
 # Search and Rescue (SAR) Agent Framework - CSC 581
 
+## Resource Manager Agent Implementation
+
+This repository contains an implementation of the Resource Manager Agent. Agent data can be outputted with the consolidate_ouput function and uses a JSON format.
+
 ## Introduction
 
 This framework is for CSC 581 students to develop intelligent agents supporting the AI4S&R project. Students can create specialized agents for various SAR roles such as those listed in this spreadsheet:
