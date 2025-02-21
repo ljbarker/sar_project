@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # API keys
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 
 # Deployment settings
@@ -13,7 +13,7 @@ DEPLOYMENT_NAME = os.getenv("DEPLOYMENT_NAME", "default_deployment")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 # Agent configuration
-DEFAULT_MODEL = "gpt-4"
+DEFAULT_MODEL = "gemini-2.0-flash"
 DEFAULT_TEMPERATURE = 0.7
 DEFAULT_TIMEOUT = 600
 
