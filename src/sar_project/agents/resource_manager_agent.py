@@ -1,5 +1,7 @@
 from sar_project.agents.base_agent import SARBaseAgent
 import json
+import requests
+from scipy.optimize import linprog
 
 class ResourceManagerAgent(SARBaseAgent):
     def __init__(self, name="resource_manager"):
@@ -47,6 +49,12 @@ class ResourceManagerAgent(SARBaseAgent):
                     return {"status": "removed", "datasource": message["datasource"]}
                 else:
                     return {"error": "Datasource not found"}
+            elif "optimize_allocation" in message:
+                return self.optimize_allocation(message["criteria"])
+            elif "query_database" in message:
+                return self.query_database(message["query"])
+            elif "trade_off_decision" in message:
+                return self.trade_off_decision(message["options"])
             else:
                 return {"error": "Unknown request type"}
         except Exception as e:
@@ -121,3 +129,24 @@ class ResourceManagerAgent(SARBaseAgent):
         """Check if a resource is available for deployment"""
         if self.resources.get(resource, {"status": None})["status"] == "available":
             return resource
+
+    def optimize_allocation(self, criteria):
+        """Optimize resource allocation using Linear Programming"""
+        c = criteria["costs"]
+        A = criteria["constraints"]
+        b = criteria["bounds"]
+        result = linprog(c, A_ub=A, b_ub=b, method='highs')
+        return {"optimized_allocation": result.x.tolist(), "status": result.message}
+
+    def query_database(self, query):
+        """Query external databases for recent information"""
+        responses = []
+        for db in self.databases:
+            response = requests.get(db, params=query)
+            responses.append(response.json())
+        return {"query_results": responses}
+
+    def trade_off_decision(self, options):
+        """Make trade-off decisions based on provided options"""
+        best_option = max(options, key=lambda x: x["priority"])
+        return {"selected_option": best_option}

@@ -4,3 +4,7 @@
 /dataSources/
 /dataSources.local.xml
 .env
+__pycache__/
+.vscode/
+src/sar_project.egg-info/
+.DS_Store

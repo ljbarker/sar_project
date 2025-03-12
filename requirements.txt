@@ -3,3 +3,5 @@ python-dotenv
 pytest
 autogen
 google-generativeai
+requests
+scipy
