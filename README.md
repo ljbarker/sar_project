@@ -136,3 +136,53 @@ options = [
 ]
 print(agent.trade_off_decision(options))
 ```
+
+## Recent Changes
+
+### Edits to `resource_manager_agent.py`
+
+In the latest commit, the following changes were made to `resource_manager_agent.py`:
+
+1. **Added `optimize_allocation` method**:
+
+   - This method uses Linear Programming to optimize resource allocation based on provided criteria.
+   - **Feedback 2**: This addresses the suggestion to use an optimizer for determining criteria numerically.
+   - Example usage:
+     ```python
+     criteria = {
+         "costs": [1, 2],
+         "constraints": [[1, 1]],
+         "bounds": [1]
+     }
+     print(agent.optimize_allocation(criteria))
+     ```
+
+2. **Added `query_database` method**:
+
+   - This method queries external databases for recent information.
+   - **Feedback 3**: This enhances the interaction with the `databases` field, allowing the agent to query websites or other databases.
+   - Example usage:
+     ```python
+     agent.databases = ["https://api.example.com/resource_data"]
+     query = {"type": "helicopter"}
+     print(agent.query_database(query))
+     ```
+
+3. **Added `trade_off_decision` method**:
+
+   - This method makes trade-off decisions based on provided options.
+   - **Feedback 5**: This helps the agent formulate what is important in trade-off situations.
+   - Example usage:
+     ```python
+     options = [
+         {"resource": "helicopter", "priority": 2},
+         {"resource": "boat", "priority": 1}
+     ]
+     print(agent.trade_off_decision(options))
+     ```
+
+4. **Enhanced `process_request` method**:
+   - Added handling for new request types: `optimize_allocation`, `query_database`, and `trade_off_decision`.
+   - **Feedback 4**: This makes the schedules more granular and allows the computer to find schedules that match criteria.
+
+These changes enhance the functionality of the Resource Manager Agent, allowing it to perform more complex operations and interact with external data sources.
