@@ -141,7 +141,7 @@ print(agent.trade_off_decision(options))
 
 ### Edits to `resource_manager_agent.py`
 
-In the latest commit, the following changes were made to `resource_manager_agent.py`:
+To employ feedback provided in A2, the following changes were made to `resource_manager_agent.py`:
 
 1. **Added `optimize_allocation` method**:
 
